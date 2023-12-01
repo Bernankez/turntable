@@ -31,7 +31,7 @@ export default {
         radius: "35%",
         background: "#ff6f00",
         pointer: true,
-        fonts: [{ text: "抽奖，启动！", fontColor: "#fff", fontSize: "14px", fontWeight: "bold", top: "-10px" }],
+        fonts: [{ text: "健身环，启动!", fontColor: "#fff", fontSize: "14px", fontWeight: "bold", top: "-10px" }],
       }],
     };
   },
