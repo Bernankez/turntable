@@ -14,16 +14,18 @@ export default {
         decelerationTime: 700,
         stopRange: 0.8,
       },
+      history: 0,
+      next: null,
       blocks: [{ padding: "13px", background: "#ff6f00" }],
       prizes: [
-        { range: 20, fonts: [{ text: "10分钟", top: "10%" }], background: "#ffcc80" },
-        { range: 4.5, fonts: [{ text: "30分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
-        { range: 24, fonts: [{ text: "5分钟", top: "10%" }], background: "#ffcc80" },
+        { range: 26.5, fonts: [{ text: "10分钟", top: "10%" }], background: "#ffcc80" },
+        { range: 13, fonts: [{ text: "30分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
+        { range: 21, fonts: [{ text: "20分钟", top: "10%" }], background: "#ffcc80" },
         { range: 1, fonts: [{ text: "1000分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
         { range: 0.5, fonts: [{ text: "谢谢参与", top: "10%" }], background: "#ffcc80" },
-        { range: 20, fonts: [{ text: "-10分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
-        { range: 4.5, fonts: [{ text: "-30分钟", top: "10%" }], background: "#ffcc80" },
-        { range: 24, fonts: [{ text: "-5分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
+        { range: 16, fonts: [{ text: "-10分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
+        { range: 10, fonts: [{ text: "-30分钟", top: "10%" }], background: "#ffcc80" },
+        { range: 10.5, fonts: [{ text: "-20分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
         { range: 1, fonts: [{ text: "-1000分钟", top: "10%" }], background: "#ffcc80" },
         { range: 0.5, fonts: [{ text: "谢谢参与", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
       ],
@@ -43,14 +45,25 @@ export default {
       // 模拟调用接口异步抽奖
       setTimeout(() => {
         // 假设后端返回的中奖索引是0
-        const index = 0;
+        // const index = 0;
         // 调用stop停止旋转并传递中奖索引
-        this.$refs.myLucky.stop();
+        this.$refs.myLucky.stop(this.next === null ? undefined : this.next);
+        this.next = null;
       }, 1000);
     },
     // 抽奖结束会触发end回调
     endCallback(prize) {
       console.log(prize);
+      const text = prize.fonts[0].text;
+      if (text !== "谢谢参与") {
+        this.history += Number(text.split("分钟")[0]);
+      }
+      if (this.history <= -20 && this.history > -1000) {
+        this.next = 1;
+      } else if (this.history >= 50 && this.history < 1000) {
+        this.next = 6;
+      }
+      console.log(this.history);
     },
   },
 };
