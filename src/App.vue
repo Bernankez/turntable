@@ -18,12 +18,14 @@ export default {
       prizes: [
         { range: 20, fonts: [{ text: "10分钟", top: "10%" }], background: "#ffcc80" },
         { range: 4.5, fonts: [{ text: "30分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
-        { range: 25, fonts: [{ text: "5分钟", top: "10%" }], background: "#ffcc80" },
+        { range: 24, fonts: [{ text: "5分钟", top: "10%" }], background: "#ffcc80" },
         { range: 0.5, fonts: [{ text: "1000分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
-        { range: 20, fonts: [{ text: "-10分钟", top: "10%" }], background: "#ffcc80" },
-        { range: 4.5, fonts: [{ text: "-30分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
-        { range: 25, fonts: [{ text: "-5分钟", top: "10%" }], background: "#ffcc80" },
-        { range: 0.5, fonts: [{ text: "-1000分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
+        { range: 1, fonts: [{ text: "谢谢参与", top: "10%" }], background: "#ffcc80" },
+        { range: 20, fonts: [{ text: "-10分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
+        { range: 4.5, fonts: [{ text: "-30分钟", top: "10%" }], background: "#ffcc80" },
+        { range: 24, fonts: [{ text: "-5分钟", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
+        { range: 0.5, fonts: [{ text: "-1000分钟", top: "10%" }], background: "#ffcc80" },
+        { range: 1, fonts: [{ text: "谢谢参与", fontColor: "#fff", top: "10%" }], background: "#ff8f00" },
       ],
       buttons: [{
         radius: "35%",
@@ -43,7 +45,7 @@ export default {
         // 假设后端返回的中奖索引是0
         const index = 0;
         // 调用stop停止旋转并传递中奖索引
-        this.$refs.myLucky.stop(index);
+        this.$refs.myLucky.stop();
       }, 1000);
     },
     // 抽奖结束会触发end回调
